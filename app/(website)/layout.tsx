@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import MobileMenu from "@/components/mobile-menu";
 import TopNavigation from "@/components/top-navigation";
+import { Providers } from "../../app/providers";
 
 
 
@@ -24,9 +25,9 @@ export default function RootLayout({
       <body className={poppins.className}>
 
         <TopNavigation />
-
-        {children}
-
+        <Providers>
+          {children}
+        </Providers>
         <MobileMenu />
 
       </body>

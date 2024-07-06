@@ -29,6 +29,7 @@ export interface blog {
 }
 
 export interface WhatInterface {
+    _id: string;
     name: string;
     text: any;
     disciplines: [any];
