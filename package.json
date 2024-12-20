@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typegen": "sanity schema extract --path=src/sanity/extract.json && sanity typegen generate"
   },
   "dependencies": {
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.68.2",
     "next": "15.1.2",
-    "next-sanity": "^9.8.28",
+    "next-sanity": "^9.8.29",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sanity": "^3.68.2",
