@@ -2,9 +2,13 @@ import { groq } from "next-sanity";
 
 export const MENU_QUERY = groq`*[_type in ["home", "projekte", "about", "blog" , "impressum"]] | order(sortOrder asc) {menu, slug}`;
 
-export const LANDINGPAGE_QUERY = groq`*[_type == "landingpage"] {bild, willkommenText, leistungenText}`;
+export const PROJEKTE_QUERY = groq`*[_type == "projekte"][0] | {titleImage, text}`;
 
-export const UEBERMICH_QUERY = groq`*[_type == "ueberMich"] {menu, bild, text}`;
+export const PROJEKTE_POST_QUERY = groq`*[_type == "projektePost"] | order(sortOrder desc) {title, slug, sortOrder, titleImage, client, profession, text}`;
+
+export const BLOG_QUERY = groq`*[_type == "blog"][0] | {text}`;
+
+export const BLOG_POST_QUERY = groq`*[_type == "blogPost"] | order(sortOrder desc) {title, slug, titleImage, text}`;
 
 export const PRAXIS_QUERY = groq`*[_type == "praxis"] {menu, bilder[], text}`;
 
