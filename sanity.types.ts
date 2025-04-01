@@ -68,12 +68,6 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type EmailSignature = {
   _id: string;
   _type: "emailSignature";
@@ -151,5 +145,293 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Slug | EmailSignature | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type Impressum = {
+  _id: string;
+  _type: "impressum";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  sortOrder?: number;
+  menu?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type BlogPost = {
+  _id: string;
+  _type: "blogPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Blog = {
+  _id: string;
+  _type: "blog";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  sortOrder?: number;
+  menu?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Kontakt = {
+  _id: string;
+  _type: "kontakt";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  sortOrder?: number;
+  menu?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type About = {
+  _id: string;
+  _type: "about";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  sortOrder?: number;
+  menu?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type ProjektePost = {
+  _id: string;
+  _type: "projektePost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Projekte = {
+  _id: string;
+  _type: "projekte";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  sortOrder?: number;
+  menu?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Home = {
+  _id: string;
+  _type: "home";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  sortOrder?: number;
+  menu?: string;
+  slug?: Slug;
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | EmailSignature | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Impressum | BlogPost | Blog | Kontakt | About | ProjektePost | Projekte | Home | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/queries.ts
+// Variable: MENU_QUERY
+// Query: *[_type in ["home", "projekte", "about", "blog" , "impressum"]] | order(sortOrder asc) {menu, slug}
+export type MENU_QUERYResult = Array<{
+  menu: string | null;
+  slug: Slug | null;
+}>;
+// Variable: LANDINGPAGE_QUERY
+// Query: *[_type == "landingpage"] {bild, willkommenText, leistungenText}
+export type LANDINGPAGE_QUERYResult = Array<never>;
+// Variable: UEBERMICH_QUERY
+// Query: *[_type == "ueberMich"] {menu, bild, text}
+export type UEBERMICH_QUERYResult = Array<never>;
+// Variable: PRAXIS_QUERY
+// Query: *[_type == "praxis"] {menu, bilder[], text}
+export type PRAXIS_QUERYResult = Array<never>;
+// Variable: KONTAKT_QUERY
+// Query: *[_type == "kontakt"] {menu, iconsText, navigationText, telefonnummer, email, instagram, formularText, anfahrtText}
+export type KONTAKT_QUERYResult = Array<{
+  menu: string | null;
+  iconsText: null;
+  navigationText: null;
+  telefonnummer: null;
+  email: null;
+  instagram: null;
+  formularText: null;
+  anfahrtText: null;
+}>;
+// Variable: IMPRESSUM_QUERY
+// Query: *[_type == "impressum"] {menu, verantwortungText, impressumText}
+export type IMPRESSUM_QUERYResult = Array<{
+  menu: string | null;
+  verantwortungText: null;
+  impressumText: null;
+}>;
+// Variable: FOOTER_QUERY
+// Query: *[_type == "footer"] {terminText, anerkennungText, adresse, copyright}
+export type FOOTER_QUERYResult = Array<never>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "*[_type in [\"home\", \"projekte\", \"about\", \"blog\" , \"impressum\"]] | order(sortOrder asc) {menu, slug}": MENU_QUERYResult;
+    "*[_type == \"landingpage\"] {bild, willkommenText, leistungenText}": LANDINGPAGE_QUERYResult;
+    "*[_type == \"ueberMich\"] {menu, bild, text}": UEBERMICH_QUERYResult;
+    "*[_type == \"praxis\"] {menu, bilder[], text}": PRAXIS_QUERYResult;
+    "*[_type == \"kontakt\"] {menu, iconsText, navigationText, telefonnummer, email, instagram, formularText, anfahrtText}": KONTAKT_QUERYResult;
+    "*[_type == \"impressum\"] {menu, verantwortungText, impressumText}": IMPRESSUM_QUERYResult;
+    "*[_type == \"footer\"] {terminText, anerkennungText, adresse, copyright}": FOOTER_QUERYResult;
+  }
+}
