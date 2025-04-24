@@ -82,22 +82,70 @@ export type EmailSignature = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
 };
 
-export type Impressum = {
+export type TermsAndConditions = {
   _id: string;
-  _type: "impressum";
+  _type: "termsAndConditions";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  sortOrder?: number;
   menu?: string;
+  sortOrder?: number;
   slug?: Slug;
   text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Disclaimer = {
+  _id: string;
+  _type: "disclaimer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  menu?: string;
+  sortOrder?: number;
+  slug?: Slug;
+  responsibilityText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  disclaimerText?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -124,8 +172,8 @@ export type BlogPost = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  sortOrder?: number;
   slug?: Slug;
+  date?: string;
   titleImage?: {
     asset?: {
       _ref: string;
@@ -133,6 +181,7 @@ export type BlogPost = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
@@ -156,6 +205,20 @@ export type BlogPost = {
     _type: "block";
     _key: string;
   }>;
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type Blog = {
@@ -164,8 +227,8 @@ export type Blog = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  sortOrder?: number;
   menu?: string;
+  sortOrder?: number;
   slug?: Slug;
   text?: Array<{
     children?: Array<{
@@ -187,14 +250,14 @@ export type Blog = {
   }>;
 };
 
-export type Kontakt = {
+export type Contact = {
   _id: string;
-  _type: "kontakt";
+  _type: "contact";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  sortOrder?: number;
   menu?: string;
+  sortOrder?: number;
   slug?: Slug;
   text?: Array<{
     children?: Array<{
@@ -222,8 +285,126 @@ export type About = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  sortOrder?: number;
   menu?: string;
+  sortOrder?: number;
+  slug?: Slug;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type ProjectPost = {
+  _id: string;
+  _type: "projectPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  sortOrder?: number;
+  slug?: Slug;
+  titleImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  client?: string;
+  profession?: "Product Design" | "Interior Solutions" | "Web Design & Development";
+  text?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  summary?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
+export type Projects = {
+  _id: string;
+  _type: "projects";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  menu?: string;
+  sortOrder?: number;
   slug?: Slug;
   text?: Array<{
     children?: Array<{
@@ -245,30 +426,125 @@ export type About = {
   }>;
 };
 
-export type ProjektePost = {
+export type Home = {
   _id: string;
-  _type: "projektePost";
+  _type: "home";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  menu?: string;
   sortOrder?: number;
   slug?: Slug;
-  titleImage?: {
+  heroImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  client?: string;
-  profession?: "pdoductDesign" | "interiorSolutions" | "webDevelopment";
-  text?: Array<{
+  introduction?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  productTitle?: string;
+  productImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  productText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  interiorTitle?: string;
+  interiorImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  interiorText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  webTitle?: string;
+  webImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  webText?: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -345,82 +621,155 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Projekte = {
-  _id: string;
-  _type: "projekte";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  sortOrder?: number;
-  menu?: string;
-  slug?: Slug;
-  text?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-};
-
-export type Home = {
-  _id: string;
-  _type: "home";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  sortOrder?: number;
-  menu?: string;
-  slug?: Slug;
-  text?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-};
-
 export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | EmailSignature | Impressum | BlogPost | Blog | Kontakt | About | ProjektePost | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Projekte | Home | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | EmailSignature | TermsAndConditions | Disclaimer | BlogPost | Blog | Contact | About | ProjectPost | Projects | Home | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: MENU_QUERY
-// Query: *[_type in ["home", "projekte", "about", "blog" , "impressum"]] | order(sortOrder asc) {menu, slug}
+// Query: *[_type in ["projekte", "about", "kontakt", "blog"]] | order(sortOrder asc) {menu, slug}
 export type MENU_QUERYResult = Array<{
   menu: string | null;
   slug: Slug | null;
 }>;
-// Variable: PROJEKTE_QUERY
-// Query: *[_type == "projekte"][0] | {titleImage, text}
-export type PROJEKTE_QUERYResult = {
+// Variable: HOME_QUERY
+// Query: *[_type == "home"][0] | {introduction, heroImage, productTitle, productImage, productText, interiorTitle, interiorImage, interiorText, webTitle, webImage, webText}
+export type HOME_QUERYResult = {
+  introduction: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  heroImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  productTitle: string | null;
+  productImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  productText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  interiorTitle: string | null;
+  interiorImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  interiorText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  webTitle: string | null;
+  webImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  webText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: PROJECTS_QUERY
+// Query: *[_type == "projects"][0] | {titleImage, text}
+export type PROJECTS_QUERYResult = {
   titleImage: null;
   text: Array<{
     children?: Array<{
@@ -441,9 +790,9 @@ export type PROJEKTE_QUERYResult = {
     _key: string;
   }> | null;
 } | null;
-// Variable: PROJEKTE_POST_QUERY
-// Query: *[_type == "projektePost"] | order(sortOrder desc) {title, slug, sortOrder, titleImage, client, profession, text}
-export type PROJEKTE_POST_QUERYResult = Array<{
+// Variable: PROJECT_POST_QUERY
+// Query: *[_type == "projectPost"] | order(sortOrder desc) {title, slug, sortOrder, titleImage, client, profession, text, summary, gallery}
+export type PROJECT_POST_QUERYResult = Array<{
   title: string | null;
   slug: Slug | null;
   sortOrder: number | null;
@@ -454,13 +803,14 @@ export type PROJEKTE_POST_QUERYResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   } | null;
   client: string | null;
-  profession: "interiorSolutions" | "pdoductDesign" | "webDevelopment" | null;
+  profession: "Interior Solutions" | "Product Design" | "Web Design & Development" | null;
   text: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -479,7 +829,96 @@ export type PROJEKTE_POST_QUERYResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  summary: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  gallery: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
 }>;
+// Variable: ABOUT_QUERY
+// Query: *[_type == "about"][0] {image, text}
+export type ABOUT_QUERYResult = {
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: CONTACT_QUERY
+// Query: *[_type == "contact"][0] {text}
+export type CONTACT_QUERYResult = {
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
 // Variable: BLOG_QUERY
 // Query: *[_type == "blog"][0] | {text}
 export type BLOG_QUERYResult = {
@@ -503,10 +942,11 @@ export type BLOG_QUERYResult = {
   }> | null;
 } | null;
 // Variable: BLOG_POST_QUERY
-// Query: *[_type == "blogPost"] | order(sortOrder desc) {title, slug, titleImage, text}
+// Query: *[_type == "blogPost"] | order(date desc) {title, slug, date, titleImage, text, gallery}
 export type BLOG_POST_QUERYResult = Array<{
   title: string | null;
   slug: Slug | null;
+  date: string | null;
   titleImage: {
     asset?: {
       _ref: string;
@@ -514,6 +954,7 @@ export type BLOG_POST_QUERYResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
@@ -537,45 +978,117 @@ export type BLOG_POST_QUERYResult = Array<{
     _type: "block";
     _key: string;
   }> | null;
+  gallery: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
 }>;
 // Variable: PRAXIS_QUERY
 // Query: *[_type == "praxis"] {menu, bilder[], text}
 export type PRAXIS_QUERYResult = Array<never>;
 // Variable: KONTAKT_QUERY
 // Query: *[_type == "kontakt"] {menu, iconsText, navigationText, telefonnummer, email, instagram, formularText, anfahrtText}
-export type KONTAKT_QUERYResult = Array<{
+export type KONTAKT_QUERYResult = Array<never>;
+// Variable: DISCLAIMER_QUERY
+// Query: *[_type == "disclaimer"][0] {menu, responsibilityText, disclaimerText}
+export type DISCLAIMER_QUERYResult = {
   menu: string | null;
-  iconsText: null;
-  navigationText: null;
-  telefonnummer: null;
-  email: null;
-  instagram: null;
-  formularText: null;
-  anfahrtText: null;
-}>;
-// Variable: IMPRESSUM_QUERY
-// Query: *[_type == "impressum"] {menu, verantwortungText, impressumText}
-export type IMPRESSUM_QUERYResult = Array<{
-  menu: string | null;
-  verantwortungText: null;
-  impressumText: null;
-}>;
+  responsibilityText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  disclaimerText: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: TERMS_AND_CONDITIONS_QUERY
+// Query: *[_type == "termsAndConditions"][0] {text}
+export type TERMS_AND_CONDITIONS_QUERYResult = {
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
 // Variable: FOOTER_QUERY
 // Query: *[_type == "footer"] {terminText, anerkennungText, adresse, copyright}
 export type FOOTER_QUERYResult = Array<never>;
+// Variable: FOOTER_MENU_QUERY
+// Query: *[_type in ["disclaimer", "termsAndConditions"]] | order(sortOrder asc) {menu, slug}
+export type FOOTER_MENU_QUERYResult = Array<{
+  menu: string | null;
+  slug: Slug | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type in [\"home\", \"projekte\", \"about\", \"blog\" , \"impressum\"]] | order(sortOrder asc) {menu, slug}": MENU_QUERYResult;
-    "*[_type == \"projekte\"][0] | {titleImage, text}": PROJEKTE_QUERYResult;
-    "*[_type == \"projektePost\"] | order(sortOrder desc) {title, slug, sortOrder, titleImage, client, profession, text}": PROJEKTE_POST_QUERYResult;
+    "*[_type in [\"projekte\", \"about\", \"kontakt\", \"blog\"]] | order(sortOrder asc) {menu, slug}": MENU_QUERYResult;
+    "*[_type == \"home\"][0] | {introduction, heroImage, productTitle, productImage, productText, interiorTitle, interiorImage, interiorText, webTitle, webImage, webText}": HOME_QUERYResult;
+    "*[_type == \"projects\"][0] | {titleImage, text}": PROJECTS_QUERYResult;
+    "*[_type == \"projectPost\"] | order(sortOrder desc) {title, slug, sortOrder, titleImage, client, profession, text, summary, gallery}": PROJECT_POST_QUERYResult;
+    "*[_type == \"about\"][0] {image, text}": ABOUT_QUERYResult;
+    "*[_type == \"contact\"][0] {text}": CONTACT_QUERYResult;
     "*[_type == \"blog\"][0] | {text}": BLOG_QUERYResult;
-    "*[_type == \"blogPost\"] | order(sortOrder desc) {title, slug, titleImage, text}": BLOG_POST_QUERYResult;
+    "*[_type == \"blogPost\"] | order(date desc) {title, slug, date, titleImage, text, gallery}": BLOG_POST_QUERYResult;
     "*[_type == \"praxis\"] {menu, bilder[], text}": PRAXIS_QUERYResult;
     "*[_type == \"kontakt\"] {menu, iconsText, navigationText, telefonnummer, email, instagram, formularText, anfahrtText}": KONTAKT_QUERYResult;
-    "*[_type == \"impressum\"] {menu, verantwortungText, impressumText}": IMPRESSUM_QUERYResult;
+    "*[_type == \"disclaimer\"][0] {menu, responsibilityText, disclaimerText}": DISCLAIMER_QUERYResult;
+    "*[_type == \"termsAndConditions\"][0] {text}": TERMS_AND_CONDITIONS_QUERYResult;
     "*[_type == \"footer\"] {terminText, anerkennungText, adresse, copyright}": FOOTER_QUERYResult;
+    "*[_type in [\"disclaimer\", \"termsAndConditions\"]] | order(sortOrder asc) {menu, slug}": FOOTER_MENU_QUERYResult;
   }
 }

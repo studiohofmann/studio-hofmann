@@ -1,9 +1,9 @@
 import { defineField } from "sanity";
 import { ProjectsIcon } from "@sanity/icons";
 
-const projektePost = {
-  name: "projektePost",
-  title: "Projekte Post",
+const projectPost = {
+  name: "projectPost",
+  title: "Project Post",
   type: "document",
   icon: ProjectsIcon,
 
@@ -55,9 +55,12 @@ const projektePost = {
       type: "string",
       options: {
         list: [
-          { title: "Product Design", value: "pdoductDesign" },
-          { title: "Interior Solutions", value: "interiorSolutions" },
-          { title: "Web Development", value: "webDevelopment" },
+          { title: "Product Design", value: "Product Design" },
+          { title: "Interior Solutions", value: "Interior Solutions" },
+          {
+            title: "Web Design & Development",
+            value: "Web Design & Development",
+          },
         ],
       },
       validation: (rule) => rule.required(),
@@ -68,7 +71,34 @@ const projektePost = {
       type: "array",
       of: [{ type: "block" }],
     }),
+    defineField({
+      name: "summary",
+      title: "Summary",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "gallery",
+      title: "Gallery",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alternative Text",
+            },
+          ],
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      description: "Upload and manage multiple images as a gallery",
+    }),
   ],
 };
 
-export default projektePost;
+export default projectPost;

@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 async function getBlogData(): Promise<BlogType | null> {
   try {
@@ -35,20 +36,24 @@ export default async function Blog() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Blog main content */}
-      <div className="prose max-w-none mb-12">
-        <PortableText value={blog.text || []} />
-      </div>
+    <section>
+      <PortableText value={blog.text || []} />
 
-      {/* Blog posts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 md:gap-1 xl:gap-1">
         {blogPost?.map((blogPost, index) => (
           <div key={index} className="group">
-            <Link href={`/blog/${blogPost.slug?.current || "#"}`}>
-              <div className="flex flex-col gap-3">
+            <Link
+              className="!block !py-0"
+              href={`/blog/${blogPost.slug?.current || "#"}`}
+            >
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 border-b-4 border-b-neutral-800 py-2 px-4">
+                  <ArrowRightOutlined />
+                  {blogPost.title && <div>{blogPost.title}</div>}
+                </div>
+
                 {blogPost.titleImage && (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden border-b-4 border-b-neutral-800">
                     <Image
                       src={urlFor(blogPost.titleImage).url()}
                       alt={
@@ -63,16 +68,24 @@ export default async function Blog() {
                         .height(24)
                         .blur(10)
                         .url()}
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                      className="object-cover"
                     />
                   </div>
                 )}
               </div>
+              {blogPost.text && (
+                <p className="!font-semibold">
+                  {(blogPost.text?.[0]?.children?.[0]?.text ?? "").slice(
+                    0,
+                    100
+                  )}
+                  ...
+                </p>
+              )}
             </Link>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,13 +1,18 @@
 import { defineField } from "sanity";
 import { EnvelopeIcon } from "@sanity/icons";
 
-const kontakt = {
-  name: "kontakt",
-  title: "Kontakt",
+const contact = {
+  name: "contact",
+  title: "Contact",
   type: "document",
   icon: EnvelopeIcon,
 
   fields: [
+    defineField({
+      name: "menu",
+      title: "Menu",
+      type: "string",
+    }),
     defineField({
       name: "sortOrder",
       title: "Menu Sort Order",
@@ -15,11 +20,6 @@ const kontakt = {
       description:
         "Controls the position in the menu (higher numbers appear later)",
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "menu",
-      title: "Menu",
-      type: "string",
     }),
     defineField({
       name: "slug",
@@ -39,4 +39,4 @@ const kontakt = {
   ],
 };
 
-export default kontakt;
+export default contact;

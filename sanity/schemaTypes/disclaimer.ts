@@ -1,13 +1,18 @@
 import { defineField } from "sanity";
 import { InfoOutlineIcon } from "@sanity/icons";
 
-const impressum = {
-  name: "impressum",
-  title: "Impressum",
+const disclaimer = {
+  name: "disclaimer",
+  title: "Disclaimer",
   type: "document",
   icon: InfoOutlineIcon,
 
   fields: [
+    defineField({
+      name: "menu",
+      title: "Menu",
+      type: "string",
+    }),
     defineField({
       name: "sortOrder",
       title: "Menu Sort Order",
@@ -15,11 +20,6 @@ const impressum = {
       description:
         "Controls the position in the menu (higher numbers appear later)",
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "menu",
-      title: "Menu",
-      type: "string",
     }),
     defineField({
       name: "slug",
@@ -31,12 +31,18 @@ const impressum = {
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "text",
-      title: "Text",
+      name: "responsibilityText",
+      title: "Responsibility Text",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "disclaimerText",
+      title: "Disclaimer Text",
       type: "array",
       of: [{ type: "block" }],
     }),
   ],
 };
 
-export default impressum;
+export default disclaimer;

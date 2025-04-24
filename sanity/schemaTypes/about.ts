@@ -9,17 +9,17 @@ const about = {
 
   fields: [
     defineField({
+      name: "menu",
+      title: "Menu",
+      type: "string",
+    }),
+    defineField({
       name: "sortOrder",
       title: "Menu Sort Order",
       type: "number",
       description:
         "Controls the position in the menu (higher numbers appear later)",
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "menu",
-      title: "Menu",
-      type: "string",
     }),
     defineField({
       name: "slug",
@@ -29,6 +29,21 @@ const about = {
         "Add a custom slug for the URL or generate one from the menu",
       options: { source: "menu" },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative Text",
+        },
+      ],
     }),
     defineField({
       name: "text",

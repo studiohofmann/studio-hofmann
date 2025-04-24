@@ -1,11 +1,11 @@
 import { defineField } from "sanity";
-import { BoldIcon } from "@sanity/icons";
+import { ProjectsIcon } from "@sanity/icons";
 
-const blog = {
-  name: "blog",
-  title: "Blog",
+const projects = {
+  name: "projects",
+  title: "Projects",
   type: "document",
-  icon: BoldIcon,
+  icon: ProjectsIcon,
 
   fields: [
     defineField({
@@ -39,4 +39,4 @@ const blog = {
   ],
 };
 
-export default blog;
+export default projects;

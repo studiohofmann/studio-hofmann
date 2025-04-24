@@ -1,1 +1,119 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Sentinent";
+  src: url("/fonts/Sentient-Variable.woff2") format("woff2");
+  font-weight: 100 900; /* or the range supported */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Variable.woff2") format("woff2");
+  font-weight: 100 900; /* or the range supported */
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Poppins", sans-serif;
+  --font-sentinent: "Sentinent";
+
+  --color-bitter-50: #f7f7f6;
+  --color-bitter-100: #e4e5e2;
+  --color-bitter-200: #cacbc4;
+  --color-bitter-300: #a9aa9e;
+  --color-bitter-400: #898b7e; /* <------- */
+  --color-bitter-500: #6b6d5f;
+  --color-bitter-600: #54564b;
+  --color-bitter-700: #45473e;
+  --color-bitter-800: #3a3b34;
+  --color-bitter-900: #32332e;
+  --color-bitter-950: #1a1b18;
+
+  --color-stack-50: #f7f7f6;
+  --color-stack-100: #e5e5e2;
+  --color-stack-200: #c9cac5;
+  --color-stack-300: #a6a8a0;
+  --color-stack-400: #84877d;
+  --color-stack-500: #686b61;
+  --color-stack-600: #52554c;
+  --color-stack-700: #44463f;
+  --color-stack-800: #383a35;
+  --color-stack-900: #31322f;
+  --color-stack-950: #1a1b18;
+
+  --color-tapa-50: #f7f7f6;
+  --color-tapa-100: #e5e5e2;
+  --color-tapa-200: #cacac5;
+  --color-tapa-300: #a7a7a1;
+  --color-tapa-400: #84857c;
+  --color-tapa-500: #74756c;
+  --color-tapa-600: #53544d;
+  --color-tapa-700: #444540;
+  --color-tapa-800: #383936;
+  --color-tapa-900: #31322f;
+  --color-tapa-950: #1a1b18;
+}
+
+html,
+body {
+  @apply text-neutral-800;
+  @apply font-medium;
+  @apply bg-neutral-800;
+  @apply float-right;
+  @apply font-sans;
+  @apply font-semibold;
+}
+
+p {
+  @apply px-4 py-2;
+  @apply bg-neutral-400;
+}
+
+h1 {
+  @apply font-bold;
+}
+h2 {
+  @apply px-4 py-2;
+  @apply bg-neutral-400;
+  @apply font-bold;
+}
+
+a {
+  @apply text-neutral-800 font-bold;
+  @apply bg-neutral-600 hover:bg-neutral-700;
+  @apply py-2;
+  @apply flex items-center justify-center;
+}
+.active {
+  @apply bg-neutral-700;
+  /* other active styles */
+}
+
+.logo {
+  @apply w-full h-full md:h-21 xl:h-full aspect-[500/242.38];
+  @apply block;
+  @apply text-neutral-600 group-hover:text-neutral-700;
+}
+
+a.active .logo {
+  @apply text-neutral-700; /* Change the SVG color instead of background */
+}
+
+section {
+  @apply mx-1 mb-1 xl:mb-12 xl:mt-1;
+  @apply xl:ml-[20%];
+  @apply flex flex-col gap-1;
+}
+
+footer {
+  @apply mx-1 mb-1 xl:mt-1;
+  @apply xl:ml-[20%];
+  @apply flex flex-col gap-1;
+  @apply xl:hidden;
+}
+text {
+  @apply py-4 px-4;
+}

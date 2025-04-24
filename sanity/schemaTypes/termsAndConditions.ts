@@ -1,13 +1,18 @@
 import { defineField } from "sanity";
-import { ProjectsIcon } from "@sanity/icons";
+import { InfoOutlineIcon } from "@sanity/icons";
 
-const projekte = {
-  name: "projekte",
-  title: "Projekte",
+const termsAndConditions = {
+  name: "termsAndConditions",
+  title: "Terms & Conditions",
   type: "document",
-  icon: ProjectsIcon,
+  icon: InfoOutlineIcon,
 
   fields: [
+    defineField({
+      name: "menu",
+      title: "Menu",
+      type: "string",
+    }),
     defineField({
       name: "sortOrder",
       title: "Menu Sort Order",
@@ -15,11 +20,6 @@ const projekte = {
       description:
         "Controls the position in the menu (higher numbers appear later)",
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "menu",
-      title: "Menu",
-      type: "string",
     }),
     defineField({
       name: "slug",
@@ -39,4 +39,4 @@ const projekte = {
   ],
 };
 
-export default projekte;
+export default termsAndConditions;

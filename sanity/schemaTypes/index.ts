@@ -1,24 +1,26 @@
 import { type SchemaTypeDefinition } from "sanity";
 import home from "./home";
-import projekte from "./projekte";
-import projektePost from "./projekte-post";
+import projects from "./projects";
+import projectPost from "./project-post";
 import about from "./about";
-import kontakt from "./kontakt";
+import contact from "./contact";
 import blog from "./blog";
 import blogPost from "./blog-post";
-import impressum from "./impressum";
+import disclaimer from "./disclaimer";
+import termsAndConditions from "./termsAndConditions";
 import emailSignature from "./emailSignature";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     home,
-    projekte,
-    projektePost,
+    projects,
+    projectPost,
     about,
-    kontakt,
+    contact,
     blog,
     blogPost,
-    impressum,
+    disclaimer,
+    termsAndConditions,
     emailSignature,
   ],
 };

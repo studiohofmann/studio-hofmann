@@ -32,12 +32,12 @@ async function getBlogPostData(slug: string): Promise<BlogPostType | null> {
 }
 
 // Page component
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
+export default async function BlogPostPage(props: {
+  params: Promise<{ slug: string }>;
 }) {
+  const params = await props.params;
   const post = await getBlogPostData(params.slug);
+  const allPosts = await client.fetch<BlogPostType[]>(BLOG_POST_QUERY);
 
   if (!post) {
     return (
@@ -46,38 +46,83 @@ export default async function BlogPostPage({
   }
 
   return (
-    <article className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="mb-8">
-        <Link
-          href="/blog"
-          className="text-blue-600 hover:underline mb-4 inline-block"
-        >
-          ← Back to blog
-        </Link>
-        <h1 className="text-4xl font-bold mb-6">{post.title}</h1>
+    <section>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-1">
+        <h2>{post.title}</h2>
+        <p>{post.date}</p>
       </div>
 
-      {post.titleImage && (
-        <div className="relative w-full aspect-[16/9] mb-8">
-          <Image
-            src={urlFor(post.titleImage).url()}
-            alt={post.titleImage.alt || post.title || "Blog post image"}
-            fill
-            priority
-            placeholder="blur"
-            blurDataURL={urlFor(post.titleImage)
-              .width(24)
-              .height(24)
-              .blur(10)
-              .url()}
-            className="object-cover rounded-lg"
-          />
+      <div className=" grid grid-cols-1 gap-1 xl:grid-cols-2">
+        {post.titleImage && (
+          <div className="relative w-full aspect-[4/3]">
+            <Image
+              src={urlFor(post.titleImage).url()}
+              alt={post.titleImage.alt || post.title || "Blog post image"}
+              fill
+              priority
+              placeholder="blur"
+              blurDataURL={urlFor(post.titleImage)
+                .width(24)
+                .height(24)
+                .blur(10)
+                .url()}
+              className="object-cover"
+            />
+          </div>
+        )}
+        <div className="bg-neutral-400">
+          <PortableText value={post.text || []} />
+        </div>
+      </div>
+
+      {/* Blog Post Gallery */}
+      {post.gallery && post.gallery.length > 0 && (
+        <div className="">
+          <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 xl:gap-1">
+            {post.gallery.map((imageItem, index) => (
+              <div key={index} className="relative w-full h-full aspect-[4/3]">
+                <Image
+                  src={urlFor(imageItem).url()}
+                  alt={imageItem.alt || `Gallery image ${index + 1}`}
+                  fill
+                  placeholder="blur"
+                  blurDataURL={urlFor(imageItem)
+                    .width(24)
+                    .height(24)
+                    .blur(10)
+                    .url()}
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
-      <div className="prose max-w-none">
-        <PortableText value={post.text || []} />
+      {/* All Posts */}
+      <div className="flex flex-col gap-1">
+        {allPosts
+          .filter((p) => p.slug?.current !== params.slug) // Exclude current post
+          .map((post) => (
+            <div key={post.slug?.current}>
+              <Link
+                href={`/blog/${post.slug?.current}`} // Corrected URL
+                className="menuButton !justify-between px-4"
+              >
+                <div>{post.title}</div>
+                <div>
+                  {post.date
+                    ? new Date(post.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })
+                    : "No date available"}
+                </div>
+              </Link>
+            </div>
+          ))}
       </div>
-    </article>
+    </section>
   );
 }

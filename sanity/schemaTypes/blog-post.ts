@@ -14,13 +14,6 @@ const blogPost = {
       type: "string",
     }),
     defineField({
-      name: "sortOrder",
-      title: "Sort Order",
-      type: "number",
-      description: "Set the order of this project (lower numbers appear first)",
-      validation: (rule) => rule.required().min(0),
-    }),
-    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -28,6 +21,14 @@ const blogPost = {
         "Add a custom slug for the URL or generate one from the title",
       options: { source: "title" },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "date",
+      title: "Date",
+      type: "date",
+      options: {
+        dateFormat: "YYYY-MM-DD",
+      },
     }),
     defineField({
       name: "titleImage",
@@ -49,6 +50,27 @@ const blogPost = {
       title: "Text",
       type: "array",
       of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "gallery",
+      title: "Gallery",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alternative Text",
+            },
+          ],
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      description: "Upload and manage multiple images as a gallery",
     }),
   ],
 };
