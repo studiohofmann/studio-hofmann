@@ -1,14 +1,6 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Sentinent";
-  src: url("/fonts/Sentient-Variable.woff2") format("woff2");
-  font-weight: 100 900; /* or the range supported */
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Poppins";
   src: url("/fonts/Poppins-Variable.woff2") format("woff2");
   font-weight: 100 900; /* or the range supported */
@@ -18,7 +10,6 @@
 
 @theme {
   --font-sans: "Poppins", sans-serif;
-  --font-sentinent: "Sentinent";
 
   --color-bitter-50: #f7f7f6;
   --color-bitter-100: #e4e5e2;
@@ -56,64 +47,121 @@
   --color-tapa-900: #31322f;
   --color-tapa-950: #1a1b18;
 }
+html {
+  @apply bg-neutral-200; /* Global background color */
+  @apply text-neutral-700 text-sm; /* Global text color */
+}
 
-html,
 body {
-  @apply text-neutral-800;
-  @apply font-medium;
-  @apply bg-neutral-800;
-  @apply float-right;
-  @apply font-sans;
-  @apply font-semibold;
+  @apply m-4 md:m-8; /* Padding for the content area */
+  @apply font-sans; /* Font for the content */
 }
 
 p {
-  @apply px-4 py-2;
-  @apply bg-neutral-400;
+  @apply flex-1 normal-case;
 }
 
 h1 {
-  @apply font-bold;
+  @apply font-bold text-2xl;
 }
+
 h2 {
-  @apply px-4 py-2;
-  @apply bg-neutral-400;
   @apply font-bold;
 }
 
-a {
-  @apply text-neutral-800 font-bold;
-  @apply bg-neutral-600 hover:bg-neutral-700;
+a,
+button {
+  @apply uppercase;
+  @apply border-1;
+  @apply hover:bg-neutral-500;
   @apply py-2;
-  @apply flex items-center justify-center;
+  @apply flex gap-4 items-center justify-center;
+}
+
+.blogPostLink {
+  @apply flex-col;
+  @apply p-4;
+  @apply bg-red-300;
+}
+
+.groupLink {
+  @apply w-full;
+  @apply uppercase border-1;
+  @apply px-4 py-2;
+  @apply group-hover:bg-neutral-500;
+  @apply whitespace-nowrap overflow-hidden text-ellipsis;
 }
 .active {
-  @apply bg-neutral-700;
+  @apply bg-neutral-500;
   /* other active styles */
 }
 
+.date {
+  @apply flex-1 w-full;
+  @apply px-4;
+}
+
+nav {
+  @apply flex flex-col gap-2;
+  @apply md:flex-row;
+}
+
+.gallery {
+  @apply grid grid-cols-1 md:gap-4;
+  @apply md:grid-cols-2;
+}
+
+.previewGallery {
+  @apply grid grid-cols-1 md:gap-4;
+  @apply md:grid-cols-2;
+  @apply lg:grid-cols-3;
+}
+
+.line {
+  @apply my-8 w-full h-0.25 bg-neutral-700;
+}
+
+.navigation {
+  @apply flex flex-col gap-2;
+}
+
 .logo {
-  @apply w-full h-full md:h-21 xl:h-full aspect-[500/242.38];
+  @apply w-full h-full md:h-23  aspect-[400/194];
   @apply block;
-  @apply text-neutral-600 group-hover:text-neutral-700;
+  @apply text-neutral-400 group-hover:text-neutral-500;
 }
 
 a.active .logo {
-  @apply text-neutral-700; /* Change the SVG color instead of background */
+  @apply text-neutral-500; /* Change the SVG color instead of background */
 }
 
 section {
-  @apply mx-1 mb-1 xl:mb-12 xl:mt-1;
-  @apply xl:ml-[20%];
-  @apply flex flex-col gap-1;
+  @apply flex flex-col;
 }
 
-footer {
-  @apply mx-1 mb-1 xl:mt-1;
-  @apply xl:ml-[20%];
-  @apply flex flex-col gap-1;
-  @apply xl:hidden;
-}
 text {
   @apply py-4 px-4;
+}
+
+form {
+  @apply flex flex-col gap-2;
+}
+
+label {
+  @apply px-4 py-2 bg-neutral-400 flex items-center;
+}
+input,
+textarea {
+  @apply bg-neutral-300;
+  @apply text-neutral-800;
+  @apply px-4 py-2;
+  @apply w-full;
+}
+.formfield {
+  @apply flex flex-col gap-2;
+  @apply w-full;
+}
+
+input[list]::-webkit-calendar-picker-indicator {
+  display: none !important;
 }

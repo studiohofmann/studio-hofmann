@@ -2,8 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { ABOUT_QUERY } from "@/sanity/lib/queries";
 import { About as AboutType } from "@/sanity.types";
 import { PortableText } from "@portabletext/react";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
+import SanityImage from "../components/SanityImage"; // Import the new component
 
 // Server component
 export default async function About() {
@@ -14,22 +13,13 @@ export default async function About() {
     <section>
       {/* Render the image if present */}
       {aboutData.image && (
-        <div className="relative w-full h-full aspect-4/3">
-          <Image
-            src={urlFor(aboutData.image).url()}
-            alt={aboutData.image.alt || "About image"}
-            fill
-            priority
-            placeholder="blur"
-            blurDataURL={urlFor(aboutData.image)
-              .width(24)
-              .height(24)
-              .blur(10)
-              .url()}
-            className="object-cover"
-          />
-        </div>
+        <SanityImage
+          image={aboutData.image}
+          altFallback="About image"
+          priority={true}
+        />
       )}
+      <div className="line"></div>
 
       {/* Render the PortableText if present */}
       {aboutData.text && (
@@ -37,6 +27,7 @@ export default async function About() {
           <PortableText value={aboutData.text} />
         </div>
       )}
+      <div className="line xl:hidden"></div>
     </section>
   );
 }

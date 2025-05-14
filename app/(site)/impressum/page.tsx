@@ -13,11 +13,13 @@ export default async function Disclaimer() {
           <PortableText value={disclaimerData.responsibilityText} />
         </div>
       )}
+      <div className="line"></div>
       {disclaimerData.disclaimerText && (
         <div className="flex-2">
           <PortableText value={disclaimerData.disclaimerText} />
         </div>
       )}
+      <div className="line xl:hidden"></div>
     </section>
   );
 }

@@ -2,10 +2,10 @@ import { client } from "@/sanity/lib/client";
 import { BLOG_QUERY, BLOG_POST_QUERY } from "@/sanity/lib/queries";
 import { Blog as BlogType, BlogPost as BlogPostType } from "@/sanity.types";
 import { PortableText } from "@portabletext/react";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
+import SanityImage from "../components/SanityImage";
 import Link from "next/link";
-import { ArrowRightOutlined } from "@ant-design/icons";
+
+export const revalidate = 0;
 
 async function getBlogData(): Promise<BlogType | null> {
   try {
@@ -39,50 +39,38 @@ export default async function Blog() {
     <section>
       <PortableText value={blog.text || []} />
 
-      <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 md:gap-1 xl:gap-1">
-        {blogPost?.map((blogPost, index) => (
-          <div key={index} className="group">
-            <Link
-              className="!block !py-0"
-              href={`/blog/${blogPost.slug?.current || "#"}`}
-            >
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 border-b-4 border-b-neutral-800 py-2 px-4">
-                  <ArrowRightOutlined />
-                  {blogPost.title && <div>{blogPost.title}</div>}
-                </div>
+      <div className="line"></div>
 
-                {blogPost.titleImage && (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden border-b-4 border-b-neutral-800">
-                    <Image
-                      src={urlFor(blogPost.titleImage).url()}
-                      alt={
-                        blogPost.titleImage.alt ||
-                        blogPost.title ||
-                        "Default alt text"
-                      }
-                      fill
-                      placeholder="blur"
-                      blurDataURL={urlFor(blogPost.titleImage)
-                        .width(24)
-                        .height(24)
-                        .blur(10)
-                        .url()}
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-              {blogPost.text && (
-                <p className="!font-semibold">
-                  {(blogPost.text?.[0]?.children?.[0]?.text ?? "").slice(
-                    0,
-                    100
-                  )}
-                  ...
+      <div className="previewGallery">
+        {blogPost?.map((post, index) => (
+          <div key={index} className="flex flex-col">
+            <Link
+              className="blogPostLink group"
+              href={`/blog/${post.slug?.current || "#"}`}
+            >
+              {post.title && <div className="groupLink">{post.title}</div>}
+              {post.date && <div className="date">{post.date}</div>}
+
+              {post.titleImage && (
+                <SanityImage
+                  image={post.titleImage}
+                  altFallback="About image"
+                  priority={true}
+                />
+              )}
+              {post.text && (
+                <p>
+                  {(post.text?.[0]?.children?.[0]?.text ?? "").slice(0, 150)}
+                  ...read more
                 </p>
               )}
             </Link>
+
+            {/* Conditionally render the line */}
+            {/* Conditionally render the line */}
+            {index < (blogPost?.length || 0) - 1 && (
+              <div className="line md:hidden"></div>
+            )}
           </div>
         ))}
       </div>

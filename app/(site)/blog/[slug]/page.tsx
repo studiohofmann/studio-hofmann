@@ -2,9 +2,10 @@ import { client } from "@/sanity/lib/client";
 import { BLOG_POST_QUERY } from "@/sanity/lib/queries";
 import { BlogPost as BlogPostType } from "@/sanity.types";
 import { PortableText } from "@portabletext/react";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import Link from "next/link";
+import SanityImage from "../../components/SanityImage";
+import LinkListItem from "../../components/navigation/LinkListItem";
+import PaginationNav from "../../components/PaginationNav";
+import { getPaginationSlugs } from "@/utils/getPaginationUtils";
 
 // Generate static paths for all blog post slugs
 export async function generateStaticParams() {
@@ -35,8 +36,8 @@ async function getBlogPostData(slug: string): Promise<BlogPostType | null> {
 export default async function BlogPostPage(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await props.params;
-  const post = await getBlogPostData(params.slug);
+  const paramsFromProps = await props.params;
+  const post = await getBlogPostData(paramsFromProps.slug);
   const allPosts = await client.fetch<BlogPostType[]>(BLOG_POST_QUERY);
 
   if (!post) {
@@ -45,84 +46,68 @@ export default async function BlogPostPage(props: {
     );
   }
 
+  // Get previous and next blog post slugs
+  const { prevSlug: prevPostSlug, nextSlug: nextPostSlug } = getPaginationSlugs(
+    allPosts,
+    paramsFromProps.slug
+  );
+
   return (
     <section>
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
         <h2>{post.title}</h2>
-        <p>{post.date}</p>
+        <div className="date">{post.date}</div>
       </div>
 
-      <div className=" grid grid-cols-1 gap-1 xl:grid-cols-2">
+      <div className=" grid grid-cols-1 gap-2 xl:grid-cols-2">
         {post.titleImage && (
-          <div className="relative w-full aspect-[4/3]">
-            <Image
-              src={urlFor(post.titleImage).url()}
-              alt={post.titleImage.alt || post.title || "Blog post image"}
-              fill
-              priority
-              placeholder="blur"
-              blurDataURL={urlFor(post.titleImage)
-                .width(24)
-                .height(24)
-                .blur(10)
-                .url()}
-              className="object-cover"
-            />
-          </div>
+          <SanityImage
+            image={post.titleImage}
+            altFallback="About image"
+            priority={true}
+          />
         )}
-        <div className="bg-neutral-400">
+        <div className="flex flex-col flex-grow">
           <PortableText value={post.text || []} />
         </div>
       </div>
 
       {/* Blog Post Gallery */}
       {post.gallery && post.gallery.length > 0 && (
-        <div className="">
-          <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 xl:gap-1">
-            {post.gallery.map((imageItem, index) => (
-              <div key={index} className="relative w-full h-full aspect-[4/3]">
-                <Image
-                  src={urlFor(imageItem).url()}
-                  alt={imageItem.alt || `Gallery image ${index + 1}`}
-                  fill
-                  placeholder="blur"
-                  blurDataURL={urlFor(imageItem)
-                    .width(24)
-                    .height(24)
-                    .blur(10)
-                    .url()}
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="gallery">
+          {post.gallery.map((imageItem, index) => (
+            <SanityImage
+              key={index}
+              image={imageItem}
+              altFallback={`Gallery image ${index + 1}`}
+              aspectRatio="aspect-[4/3]"
+              className="object-cover"
+            />
+          ))}
         </div>
       )}
+      <div className="line"></div>
 
-      {/* All Posts */}
-      <div className="flex flex-col gap-1">
-        {allPosts
-          .filter((p) => p.slug?.current !== params.slug) // Exclude current post
-          .map((post) => (
-            <div key={post.slug?.current}>
-              <Link
-                href={`/blog/${post.slug?.current}`} // Corrected URL
-                className="menuButton !justify-between px-4"
-              >
-                <div>{post.title}</div>
-                <div>
-                  {post.date
-                    ? new Date(post.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })
-                    : "No date available"}
-                </div>
-              </Link>
-            </div>
-          ))}
-      </div>
+      {/* Previous/Next Blog Post Navigation */}
+      <PaginationNav
+        prevSlug={prevPostSlug}
+        nextSlug={nextPostSlug}
+        basePath="/blog/"
+      />
+
+      {/* All Blog Posts List */}
+      {allPosts
+        .filter((p) => p.slug?.current !== paramsFromProps.slug)
+        .map((otherPost) => (
+          <LinkListItem
+            key={otherPost.slug?.current}
+            title={otherPost.title}
+            subtitle={otherPost.date}
+            href={`/blog/${otherPost.slug?.current}`}
+          />
+        ))}
+
+      <div className="line xl:hidden"></div>
     </section>
   );
 }

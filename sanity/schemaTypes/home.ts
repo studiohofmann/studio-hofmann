@@ -52,82 +52,91 @@ const home = {
       of: [{ type: "block" }],
     }),
     defineField({
-      name: "productTitle",
-      title: "Product Title",
-      type: "string",
-    }),
-    defineField({
-      name: "productImage",
-      title: "Product Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
+      name: "professions",
+      title: "Professions",
+      type: "array",
+      of: [
         {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
+          type: "object",
+          name: "profession",
+          title: "Profession",
+          fields: [
+            defineField({
+              name: "title",
+              title: "Title",
+              type: "string",
+            }),
+            defineField({
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  type: "string",
+                  title: "Alternative Text",
+                },
+              ],
+            }),
+            defineField({
+              name: "text",
+              title: "Text",
+              type: "array",
+              of: [{ type: "block" }],
+            }),
+          ],
         },
       ],
     }),
     defineField({
-      name: "productText",
-      title: "Product Text",
-      type: "array",
-      of: [{ type: "block" }],
-    }),
-    defineField({
-      name: "interiorTitle",
-      title: "Interior Title",
-      type: "string",
-    }),
-    defineField({
-      name: "interiorImage",
-      title: "Interior Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
+      name: "getInTouch",
+      title: "Get in Touch",
+      type: "object",
       fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
+        defineField({
+          name: "text",
+          title: "Text",
+          type: "array",
+          of: [{ type: "block" }],
+        }),
+        defineField({
+          name: "contactDetails",
+          title: "Contact Details",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              name: "contactItem",
+              title: "Contact Item",
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Title",
+                  type: "string",
+                  description: "Contact label (e.g. Email, Instagram, etc.)",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "value",
+                  title: "Value",
+                  type: "string",
+                  description: "Contact information",
+                  validation: (Rule) => Rule.required(),
+                }),
+              ],
+              preview: {
+                select: {
+                  title: "title",
+                  subtitle: "value",
+                },
+              },
+            },
+          ],
+        }),
       ],
-    }),
-    defineField({
-      name: "interiorText",
-      title: "Interior Text",
-      type: "array",
-      of: [{ type: "block" }],
-    }),
-    defineField({
-      name: "webTitle",
-      title: "Web Title",
-      type: "string",
-    }),
-    defineField({
-      name: "webImage",
-      title: "Web Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-      ],
-    }),
-    defineField({
-      name: "webText",
-      title: "Web Text",
-      type: "array",
-      of: [{ type: "block" }],
     }),
   ],
 };

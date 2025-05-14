@@ -5,10 +5,8 @@ import {
   ProjectPost as ProjectPostType,
 } from "@/sanity.types";
 import { PortableText } from "@portabletext/react";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
+import SanityImage from "../components/SanityImage";
 import Link from "next/link";
-import { ArrowRightOutlined } from "@ant-design/icons";
 
 export const revalidate = 0;
 
@@ -49,46 +47,30 @@ export default async function Projects() {
     <section>
       <PortableText value={projects.text || []} />
 
-      <div className="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 md:gap-1 xl:gap-1">
+      <div className="line"></div>
+      <div className="previewGallery">
         {projectPost.map((project, index) => (
-          <div key={index} className="group">
+          <div key={index} className="flex flex-col">
             <Link
-              className="!block !py-0"
+              className="flex-col !py-0 !gap-2 !border-0 !bg-transparent group"
               href={`/projekte/${project.slug?.current || "#"}`}
             >
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 py-2 px-4 border-b-4 border-b-neutral-800">
-                  <ArrowRightOutlined />
-                  {project.title && (
-                    <div className="font-bold truncate">{project.title}</div>
-                  )}
-                </div>
-                {project.titleImage && (
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={urlFor(project.titleImage).url()}
-                      alt={
-                        project.titleImage.alt ||
-                        project.title ||
-                        "Default alt text"
-                      }
-                      fill
-                      placeholder="blur"
-                      blurDataURL={urlFor(project.titleImage)
-                        .width(24)
-                        .height(24)
-                        .blur(10)
-                        .url()}
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-            </Link>
+              {project.title && (
+                <div className="groupLink">{project.title}</div>
+              )}
 
-            {/* Add hr line after each project except the last one, only on mobile */}
-            {index !== projectPost.length - 1 && (
-              <hr className="line md:hidden" />
+              {project.titleImage && (
+                <SanityImage
+                  image={project.titleImage}
+                  altFallback="About image"
+                  priority={true}
+                />
+              )}
+            </Link>
+            {/* Conditionally render the line */}
+            {/* Conditionally render the line */}
+            {index < (projectPost?.length || 0) - 1 && (
+              <div className="line md:hidden"></div>
             )}
           </div>
         ))}

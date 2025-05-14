@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
           loader: "@svgr/webpack",
           options: {
             icon: true,
+            titleProp: true,
+            expandProps: "start",
             // Other SVGR options
           },
         },
