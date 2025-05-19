@@ -15,7 +15,7 @@ export default async function GetInTouch() {
   const { text, contactDetails } = homeData.getInTouch;
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 bg-neutral-500 p-4">
       {/* Render the text content */}
       {text && text.length > 0 && (
         <div>
@@ -23,35 +23,36 @@ export default async function GetInTouch() {
         </div>
       )}
 
-      {/* Render contact details */}
-      {contactDetails && contactDetails.length > 0 && (
-        <div className="grid grid-cols-1 gap-2">
-          {contactDetails.map((contact, index) => (
-            <div key={index} className="contact-item">
-              {/* Handle different contact types */}
-              {contact.title?.toLowerCase() === "email" ? (
-                contact.value ? (
-                  <Link href={contact.value}>{contact.title}</Link>
+      <div>
+        {contactDetails && contactDetails.length > 0 && (
+          <div className="grid grid-cols-1 gap-2">
+            {contactDetails.map((contact, index) => (
+              <div key={index} className="grid grid-cols-1 gap-2">
+                {/* Handle different contact types */}
+                {contact.title?.toLowerCase() === "email" ? (
+                  contact.value ? (
+                    <Link href={contact.value}>{contact.title}</Link>
+                  ) : (
+                    <span>{contact.title}</span>
+                  )
+                ) : contact.title?.toLowerCase() === "instagram" ? (
+                  <a
+                    href={`https://instagram.com/${contact.value?.replace("@", "") || ""}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {contact.title}
+                  </a>
                 ) : (
-                  <span>{contact.title}</span>
-                )
-              ) : contact.title?.toLowerCase() === "instagram" ? (
-                <a
-                  href={`https://instagram.com/${contact.value?.replace("@", "") || ""}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {contact.title}
-                </a>
-              ) : (
-                <div>
-                  {contact.title}: {contact.value}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+                  <div>
+                    {contact.title}: {contact.value}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

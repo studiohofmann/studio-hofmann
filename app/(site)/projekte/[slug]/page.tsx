@@ -4,7 +4,7 @@ import { ProjectPost as ProjectsPostType } from "@/sanity.types";
 import { PortableText } from "@portabletext/react";
 import SanityImage from "../../components/SanityImage";
 import LinkListItem from "../../components/navigation/LinkListItem";
-import PaginationNav from "../../components/PaginationNav";
+import PaginationNav from "../../components/navigation/PaginationNav";
 import { getPaginationSlugs } from "@/utils/getPaginationUtils";
 
 export const revalidate = 0;
@@ -53,8 +53,13 @@ export default async function ProjectPostPage(props: {
 
   return (
     <section>
-      <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:hidden">
+          <div className="flex flex-col">
+            <h1>{project.title}</h1>
+            <div>{project.profession}</div>
+            <div>Client: {project.client}</div>
+          </div>
           {project.titleImage && (
             <SanityImage
               image={project.titleImage}
@@ -62,10 +67,26 @@ export default async function ProjectPostPage(props: {
               priority={true}
             />
           )}
-          <div className="flex flex-col gap-2">
-            <h1>{project.title}</h1>
-            <div>Client: {project.client}</div>
-            {project.profession}
+          <div>
+            <PortableText value={project.text || []} />
+          </div>
+        </div>
+
+        {/* Blog Post Info for larger screens */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4">
+          {project.titleImage && (
+            <SanityImage
+              image={project.titleImage}
+              altFallback="About image"
+              priority={true}
+            />
+          )}
+          <div className="flex flex-col gap-8">
+            <div>
+              <h1>{project.title}</h1>
+              <div>{project.profession}</div>
+              <div>Client: {project.client}</div>
+            </div>
             <div>
               <PortableText value={project.text || []} />
             </div>
@@ -74,18 +95,16 @@ export default async function ProjectPostPage(props: {
 
         {/* Project Gallery */}
         {project.gallery && project.gallery.length > 0 && (
-          <div className="">
-            <div className="gallery">
-              {project.gallery.map((imageItem, index) => (
-                <SanityImage
-                  key={index}
-                  image={imageItem}
-                  altFallback={`Gallery image ${index + 1}`}
-                  aspectRatio="aspect-[4/3]"
-                  className="object-cover"
-                />
-              ))}
-            </div>
+          <div className="gallery">
+            {project.gallery.map((imageItem, index) => (
+              <SanityImage
+                key={index}
+                image={imageItem}
+                altFallback={`Gallery image ${index + 1}`}
+                aspectRatio="aspect-[4/3]"
+                className="object-cover"
+              />
+            ))}
           </div>
         )}
       </div>

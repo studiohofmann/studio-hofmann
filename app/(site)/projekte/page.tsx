@@ -50,13 +50,13 @@ export default async function Projects() {
       <div className="line"></div>
       <div className="previewGallery">
         {projectPost.map((project, index) => (
-          <div key={index} className="flex flex-col">
+          <div key={index}>
             <Link
               className="flex-col !py-0 !gap-2 !border-0 !bg-transparent group"
               href={`/projekte/${project.slug?.current || "#"}`}
             >
               {project.title && (
-                <div className="groupLink">{project.title}</div>
+                <div className="groupLink !w-full">{project.title}</div>
               )}
 
               {project.titleImage && (
@@ -67,7 +67,6 @@ export default async function Projects() {
                 />
               )}
             </Link>
-            {/* Conditionally render the line */}
             {/* Conditionally render the line */}
             {index < (projectPost?.length || 0) - 1 && (
               <div className="line md:hidden"></div>

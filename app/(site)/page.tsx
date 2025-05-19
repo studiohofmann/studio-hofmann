@@ -37,7 +37,7 @@ export default async function Home() {
             </div>
             {/* Right Side: Text */}
             <div className="lg:w-1/2 flex flex-col gap-4">
-              {profession.title && <h2>{profession.title}</h2>}
+              {profession.title && <h1>{profession.title}</h1>}
               {profession.text && <PortableText value={profession.text} />}
             </div>
           </div>

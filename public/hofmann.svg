@@ -1,4 +1,4 @@
-<svg viewBox="0 0 400 194" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 400 194" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
   <defs>
     <pattern id="imgPattern" patternUnits="userSpaceOnUse" width="400" height="194">
       <image 
@@ -12,9 +12,15 @@
     </pattern>
   </defs>
 
-  <!-- Apply the pattern fill to the path -->
+  <!-- Apply the pattern fill to the path with fixed-width stroke -->
   <path 
     d="M376.93,0l-6.64,110.05L349.43,0h-32.9l5.06,109.08L279.57,0h-67.41l-18.23,43.08L175.82,0H49.27l1.24,58.55H26.88L20.05,0H0v194h42.68L29.25,78.87l21.56-6.46L53.39,194h84.78l-9.82-120.55l20.19,6.05l1.14-20.94h-22.54l-2.24-27.45l33.43,5.52L150.64,194h38.76L179.17,47.81L192.85,78l19.05-28.48L211.15,194h40.4l-12.6-113.49l26.07-7.82L267.63,194h36.24L287.81,65.85L325.53,194h19.77l2.46-126.6L365.21,194H400V0H376.93z M73.26,172.66l6.73-148.97l13.19,2.18l22.25,140.42L73.26,172.66z M236.5,58.55l-2.4-21.58l29.94-9.29l0.66,30.83l0,0.05H236.5z" 
     fill="url(#imgPattern)"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    vector-effect="non-scaling-stroke"
+    paint-order="stroke fill"
   />
 </svg>

@@ -10,115 +10,75 @@
 
 @theme {
   --font-sans: "Poppins", sans-serif;
-
-  --color-bitter-50: #f7f7f6;
-  --color-bitter-100: #e4e5e2;
-  --color-bitter-200: #cacbc4;
-  --color-bitter-300: #a9aa9e;
-  --color-bitter-400: #898b7e; /* <------- */
-  --color-bitter-500: #6b6d5f;
-  --color-bitter-600: #54564b;
-  --color-bitter-700: #45473e;
-  --color-bitter-800: #3a3b34;
-  --color-bitter-900: #32332e;
-  --color-bitter-950: #1a1b18;
-
-  --color-stack-50: #f7f7f6;
-  --color-stack-100: #e5e5e2;
-  --color-stack-200: #c9cac5;
-  --color-stack-300: #a6a8a0;
-  --color-stack-400: #84877d;
-  --color-stack-500: #686b61;
-  --color-stack-600: #52554c;
-  --color-stack-700: #44463f;
-  --color-stack-800: #383a35;
-  --color-stack-900: #31322f;
-  --color-stack-950: #1a1b18;
-
-  --color-tapa-50: #f7f7f6;
-  --color-tapa-100: #e5e5e2;
-  --color-tapa-200: #cacac5;
-  --color-tapa-300: #a7a7a1;
-  --color-tapa-400: #84857c;
-  --color-tapa-500: #74756c;
-  --color-tapa-600: #53544d;
-  --color-tapa-700: #444540;
-  --color-tapa-800: #383936;
-  --color-tapa-900: #31322f;
-  --color-tapa-950: #1a1b18;
 }
 html {
-  @apply bg-neutral-200; /* Global background color */
-  @apply text-neutral-700 text-sm; /* Global text color */
+  @apply bg-neutral-100; /* Global background color */
+  @apply text-neutral-800 text-sm; /* Global text color */
 }
 
 body {
-  @apply m-4 md:m-8; /* Padding for the content area */
+  @apply mx-4 mt-4 mb-2 md:mx-8 lg:mx-16 xl:mx-32; /* Padding for the content area */
   @apply font-sans; /* Font for the content */
 }
 
 p {
-  @apply flex-1 normal-case;
+  @apply normal-case;
 }
 
 h1 {
-  @apply font-bold text-2xl;
+  @apply font-bold text-3xl uppercase;
 }
 
 h2 {
-  @apply font-bold;
+  @apply text-sm;
 }
 
-a,
-button {
-  @apply uppercase;
-  @apply border-1;
-  @apply hover:bg-neutral-500;
-  @apply py-2;
-  @apply flex gap-4 items-center justify-center;
-}
-
-.blogPostLink {
-  @apply flex-col;
-  @apply p-4;
-  @apply bg-red-300;
-}
-
-.groupLink {
-  @apply w-full;
-  @apply uppercase border-1;
-  @apply px-4 py-2;
-  @apply group-hover:bg-neutral-500;
-  @apply whitespace-nowrap overflow-hidden text-ellipsis;
-}
-.active {
-  @apply bg-neutral-500;
-  /* other active styles */
-}
-
-.date {
-  @apply flex-1 w-full;
-  @apply px-4;
-}
+/* LINKS / NAVIGATION */
 
 nav {
   @apply flex flex-col gap-2;
   @apply md:flex-row;
 }
-
-.gallery {
-  @apply grid grid-cols-1 md:gap-4;
-  @apply md:grid-cols-2;
+a,
+button {
+  @apply font-bold text-neutral-400 hover:text-neutral-800 uppercase;
+  @apply border-1 border-neutral-400 hover:border-neutral-800;
+  @apply py-2;
+  @apply flex gap-4 items-center justify-center;
+}
+.active {
+  @apply text-neutral-800;
+  @apply border-neutral-800;
+  /* other active styles */
+}
+.blogPostLink {
+  @apply flex-col;
+  @apply p-4;
+}
+.groupLink {
+  @apply flex-1;
+  @apply uppercase border-1;
+  @apply px-4 py-2;
+  @apply whitespace-nowrap overflow-hidden text-ellipsis;
 }
 
+/* GALLERIES*/
+.gallery {
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2;
+}
 .previewGallery {
   @apply grid grid-cols-1 md:gap-4;
   @apply md:grid-cols-2;
   @apply lg:grid-cols-3;
 }
 
+.date {
+  @apply font-normal text-neutral-800;
+  @apply flex items-center;
+}
+
 .line {
-  @apply my-8 w-full h-0.25 bg-neutral-700;
+  @apply my-4 w-full h-0.25 bg-neutral-500;
 }
 
 .navigation {
@@ -126,9 +86,12 @@ nav {
 }
 
 .logo {
-  @apply w-full h-full md:h-23  aspect-[400/194];
+  @apply w-full h-full md:h-[79px] aspect-[400/194];
   @apply block;
-  @apply text-neutral-400 group-hover:text-neutral-500;
+  @apply !text-neutral-700;
+
+  /* Ensure no clipping */
+  @apply overflow-visible;
 }
 
 a.active .logo {
@@ -143,23 +106,19 @@ text {
   @apply py-4 px-4;
 }
 
+/* CONTACTFORM */
 form {
   @apply flex flex-col gap-2;
 }
-
-label {
-  @apply px-4 py-2 bg-neutral-400 flex items-center;
+.formfield {
 }
 input,
 textarea {
-  @apply bg-neutral-300;
+  @apply border-1;
   @apply text-neutral-800;
   @apply px-4 py-2;
   @apply w-full;
-}
-.formfield {
-  @apply flex flex-col gap-2;
-  @apply w-full;
+  @apply placeholder-neutral-400;
 }
 
 input[list]::-webkit-calendar-picker-indicator {

@@ -15,14 +15,15 @@ export default async function LatestBlogPost() {
   }
   return (
     <div className="flex flex-col gap-4">
-      <h2>latest Blogpost</h2>
+      <h1>latest Blogpost</h1>
       <Link
         href={`/blog/${latestBlogPost.slug?.current}`}
         className="blogPostLink group"
       >
-        <div className="groupLink">{latestBlogPost.title}</div>
-        <div className="date">{latestBlogPost.date}</div>
-
+        <div className="flex gap-4 w-full">
+          <div className="groupLink !w-full">{latestBlogPost.title}</div>
+          <div className="date">{latestBlogPost.date}</div>
+        </div>
         <div className="w-full flex flex-col gap-4 lg:flex-row">
           <div className="flex-1 flex">
             {latestBlogPost.titleImage && (

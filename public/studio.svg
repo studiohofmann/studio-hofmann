@@ -1,9 +1,9 @@
-<svg viewBox="0 0 400 194" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 400 194" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
   <defs>
     <pattern id="imgPattern" patternUnits="userSpaceOnUse" width="400" height="194">
       <image
         href="/textures/studio.jpg"
-        x=""
+        x="0"
         y="0"
         width="400"
         height="194"
@@ -12,12 +12,36 @@
     </pattern>
   </defs>
 
+  <!-- Background shape - fills the entire area -->
+  <rect 
+    x="0" 
+    y="0" 
+    width="400" 
+    height="194" 
+    fill="none" 
+  />
+
+  <!-- Main path with fill and stroke -->
   <path
     d="M299.06,38.98l-2.98,100.71L256.55,0h-65.79l20.16,171.83l-44.09-9.84L173.7,0H0v105.71l57.59-12.8l6.49,63.43L0,142.62V194h78.86l6.32-124.58l-56.55,0.86l-3.81-53.13l73.84,13.62L98.95,194h43.27L117.59,34.27l28.19,5.2L150.9,194H400V38.98H299.06z M227.65,170.62l-4.11-134.2L280,152.67L227.65,170.62z M314.26,175.09l11.95-101.31l26.59-9.68l21.36,100.51L314.26,175.09z"
     fill="url(#imgPattern)"
+     stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    vector-effect="non-scaling-stroke"
+    paint-order="stroke fill"
   />
+  
+  <!-- Polygon with fill and stroke -->
   <polygon
     points="400,0 400,14.25 299.25,32.6 300.21,0"
     fill="url(#imgPattern)"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    vector-effect="non-scaling-stroke"
+    paint-order="stroke fill"
   />
 </svg>

@@ -51,27 +51,26 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="formfield">
-        <label htmlFor="gender">Anrede</label>
         <div className="relative w-full" ref={dropdownRef}>
           <div
-            className="bg-neutral-300 px-4 py-2 cursor-pointer w-full flex justify-between items-center"
+            className="border-1 px-4 py-2 cursor-pointer w-full flex justify-between items-center"
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            <span className={selectedGender ? "" : "text-gray-500"}>
-              {selectedGender || "auswählen"}
+            <span className={selectedGender ? "" : "text-neutral-400"}>
+              {selectedGender || "Anrede"}
             </span>
-            <div className="text-gray-500">
+            <div className="text-neutral-400">
               {dropdownOpen ? <UpOutlined /> : <DownOutlined />}
             </div>
           </div>
 
           {/* Custom dropdown menu */}
           {dropdownOpen && (
-            <div className="absolute top-full left-0 w-full z-10 bg-neutral-300 shadow-md">
+            <div className="absolute flex flex-col gap-2 px-4 py-2 mt-2 top-full left-0 w-full z-10 border-1 border-neutral-800 bg-neutral-100 text-neutral-400">
               {genderOptions.map((option) => (
                 <div
                   key={option}
-                  className="px-4 py-2 cursor-pointer hover:bg-neutral-400"
+                  className="cursor-pointer hover:text-neutral-800"
                   onClick={() => handleSelectGender(option)}
                 >
                   {option}
@@ -87,20 +86,27 @@ export default function ContactForm() {
       </div>
 
       <div className="formfield">
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" name="name" />
+        <input id="name" type="text" name="name" placeholder="Name" />
         <ValidationError prefix="Name" field="name" errors={state.errors} />
       </div>
 
       <div className="formfield">
-        <label htmlFor="email">Email Address</label>
-        <input id="email" type="email" name="email" />
+        <input id="name" type="text" name="name" placeholder="Vorname" />
+        <ValidationError prefix="Name" field="name" errors={state.errors} />
+      </div>
+
+      <div className="formfield">
+        <input id="email" type="email" name="email" placeholder="E-Mail" />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
       </div>
 
       <div className="formfield">
-        <label htmlFor="message">Nachricht</label>
-        <textarea id="message" name="message" rows={7} />
+        <textarea
+          id="message"
+          name="message"
+          rows={7}
+          placeholder="Ihre Nachricht"
+        />
         <ValidationError
           prefix="Message"
           field="message"

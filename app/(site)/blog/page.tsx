@@ -48,8 +48,10 @@ export default async function Blog() {
               className="blogPostLink group"
               href={`/blog/${post.slug?.current || "#"}`}
             >
-              {post.title && <div className="groupLink">{post.title}</div>}
-              {post.date && <div className="date">{post.date}</div>}
+              <div className="flex w-full gap-4">
+                {post.title && <div className="groupLink">{post.title}</div>}
+                {post.date && <div className="date">{post.date}</div>}
+              </div>
 
               {post.titleImage && (
                 <SanityImage
@@ -59,14 +61,12 @@ export default async function Blog() {
                 />
               )}
               {post.text && (
-                <p>
+                <p className="font-normal text-neutral-800">
                   {(post.text?.[0]?.children?.[0]?.text ?? "").slice(0, 150)}
                   ...read more
                 </p>
               )}
             </Link>
-
-            {/* Conditionally render the line */}
             {/* Conditionally render the line */}
             {index < (blogPost?.length || 0) - 1 && (
               <div className="line md:hidden"></div>

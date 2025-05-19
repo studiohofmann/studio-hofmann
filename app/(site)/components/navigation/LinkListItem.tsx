@@ -11,15 +11,15 @@ export default function LinkListItem({
   title,
   subtitle,
   href,
-  className = "!justify-between px-4",
+  className = "px-4",
 }: LinkListItemProps) {
   return (
     <div>
       <Link href={href} className={className}>
-        <div className="overflow-hidden whitespace-nowrap text-ellipsis">
+        <div className="overflow-hidden whitespace-nowrap text-ellipsis flex-1">
           {title}
         </div>
-        {subtitle && <div>{subtitle}</div>}
+        {subtitle && <div className="font-normal normal-case">{subtitle}</div>}
       </Link>
     </div>
   );
